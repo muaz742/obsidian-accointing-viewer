@@ -7,7 +7,7 @@ on:
         description: 'Semver type of new version (major / minor / patch)'
         required: true
         type: choice
-        options: 
+        options:
         - patch
         - minor
         - major
@@ -43,14 +43,14 @@ jobs:
       run: |
         PLUGIN_NAME=$(npm pkg get name | sed 's/"//g')
         echo "plugin_name=$PLUGIN_NAME" >> $GITHUB_OUTPUT
- 
+
     - name: Bump version
       id: bump
       run: |
         npm version ${{ github.event.inputs.version }} --no-git-tag-version
         NEW_VERSION=$(npm pkg get version | sed 's/"//g')
         echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
- 
+
     - name: Push latest version
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -58,10 +58,10 @@ jobs:
         git add package.json
         git commit -m "Bump version to ${{ steps.bump.outputs.new_version }}"
         git push origin HEAD:${{ github.ref }} || exit 1
-        git tag v${{ steps.bump.outputs.new_version }}
+        git tag ${{ steps.bump.outputs.new_version }}
         git push --tags || exit 1
       
-  
+
   create-release-draft:
     name: Create Release Draft
     permissions: write-all
@@ -98,8 +98,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-            gh release create "v${{ needs.bump-version.outputs.new_version }}" \
-              --title="v${{ needs.bump-version.outputs.new_version }}" \
+            gh release create "${{ needs.bump-version.outputs.new_version }}" \
+              --title="${{ needs.bump-version.outputs.new_version }}" \
               --draft \
               --generate-notes \
               ${{ needs.bump-version.outputs.plugin_name }}-${{ needs.bump-version.outputs.new_version }}.zip \
