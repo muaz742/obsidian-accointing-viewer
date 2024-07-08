@@ -1,7 +1,7 @@
 {
 	"id": "obsidian-account-viewer",
 	"name": "Account Viewer",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"minAppVersion": "0.15.0",
 	"description": "Automatically generate accounting tables from Markdown code blocks with accounting entries tagged with accounting.",
 	"author": "muaz742",
