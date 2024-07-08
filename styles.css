@@ -1,8 +1,104 @@
-/*
+.transaction {
+	width: 100%;
+	border-collapse: collapse;
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+.transaction th, .transaction td {
+	border: 1px solid #ccc;
+	padding-left: 5px;
+	padding-right: 5px;
+}
 
-If your plugin does not need CSS, delete this file.
+.transaction th,
+.transaction td:nth-child(1) {
+	text-align: center;
+}
 
-*/
+.transaction .date {
+	width: 15%;
+}
+
+.journal-entry {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.journal-entry th,
+.journal-entry td {
+	border: 1px solid #ccc;
+	padding: 8px;
+}
+
+.journal-entry .page-num {
+	text-align: right;
+	padding: 0;
+}
+
+.journal-entry td {
+	border-top: none;
+	border-bottom: none;
+}
+
+.journal-entry tr:last-child td {
+	border-bottom: 1px solid #ccc;
+}
+
+.journal-entry th {
+	text-align: center;
+}
+
+.journal-entry .account-header {
+	text-align: left;
+}
+
+.journal-entry .date {
+	width: 15%;
+	text-align: center;
+}
+
+.journal-entry .amount {
+	text-align: right;
+}
+
+.journal-entry .credit {
+	padding-left: 30px;
+}
+
+.journal-entry .description {
+	font-style: italic;
+	text-align: center;
+}
+
+.journal-entry .post-ref {
+	width: 10%;
+}
+
+.t-account {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.t-account th {
+	border:none;
+	border-bottom: 1px solid #ccc;
+	text-align: center;
+}
+
+.t-account td {
+	padding-left: 5px;
+	padding-right: 5px;
+	border: none;
+}
+
+.t-account td:nth-child(2) {
+	border-right: 1px solid #ccc;
+	text-align: right;
+}
+
+.t-account td:last-child {
+	text-align: right;
+}
+
+.t-account .balance-row {
+	border-top: 1px solid #ccc;
+}
