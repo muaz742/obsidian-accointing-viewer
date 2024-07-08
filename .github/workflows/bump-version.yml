@@ -1,0 +1,106 @@
+name: Bump Version & Create Release Draft
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Semver type of new version (major / minor / patch)'
+        required: true
+        type: choice
+        options: 
+        - patch
+        - minor
+        - major
+env:
+  NODE_VERSION: '20.x'
+
+jobs:
+  bump-version:
+    name: Bump Version
+    permissions: write-all
+    runs-on: ubuntu-latest
+    outputs:
+      new_version: ${{ steps.bump.outputs.new_version }}
+      plugin_name: ${{ steps.get_plugin_name.outputs.plugin_name }}
+
+    steps:
+    - name: Check out source
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: Install npm packages
+      run: npm ci
+
+    - name: Get plugin name
+      id: get_plugin_name
+      run: |
+        PLUGIN_NAME=$(npm pkg get name | sed 's/"//g')
+        echo "plugin_name=$PLUGIN_NAME" >> $GITHUB_OUTPUT
+ 
+    - name: Bump version
+      id: bump
+      run: |
+        npm version ${{ github.event.inputs.version }} --no-git-tag-version
+        NEW_VERSION=$(npm pkg get version | sed 's/"//g')
+        echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+ 
+    - name: Push latest version
+      run: |
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add package.json
+        git commit -m "Bump version to ${{ steps.bump.outputs.new_version }}"
+        git push origin HEAD:${{ github.ref }} || exit 1
+        git tag v${{ steps.bump.outputs.new_version }}
+        git push --tags || exit 1
+      
+  
+  create-release-draft:
+    name: Create Release Draft
+    permissions: write-all
+    needs: bump-version
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Build
+        id: build
+        run: |
+          npm ci
+          npm run build
+          mkdir ${{ needs.bump-version.outputs.plugin_name }}
+          cp main.js manifest.json styles.css ${{ needs.bump-version.outputs.plugin_name }}
+          zip -r ${{ needs.bump-version.outputs.plugin_name }}-${{ needs.bump-version.outputs.new_version }}.zip ${{ needs.bump-version.outputs.plugin_name }}
+          ls
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ needs.bump-version.outputs.plugin_name }}-${{ needs.bump-version.outputs.new_version }}
+          path: ${{ needs.bump-version.outputs.plugin_name }}-${{ needs.bump-version.outputs.new_version }}.zip
+
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+            gh release create "v${{ needs.bump-version.outputs.new_version }}" \
+              --title="v${{ needs.bump-version.outputs.new_version }}" \
+              --draft \
+              --generate-notes \
+              ${{ needs.bump-version.outputs.plugin_name }}-${{ needs.bump-version.outputs.new_version }}.zip \
+              main.js manifest.json styles.css

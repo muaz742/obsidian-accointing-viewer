@@ -1,11 +1,11 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
-	"version": "1.0.0",
+	"id": "obsidian-account-viewer",
+	"name": "Account Viewer",
+	"version": "0.1.0",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
+	"description": "Automatically generate accounting tables from Markdown code blocks with accounting entries tagged with accounting.",
+	"author": "muaz742",
+	"authorUrl": "https://github.com/muaz742",
+	"fundingUrl": "https://www.patreon.com/muaz742",
 	"isDesktopOnly": false
 }
