@@ -21,7 +21,7 @@ export default class AccountingViewerPlugin extends Plugin {
 				currentRecord && records.push(currentRecord)
 				currentRecord = {
 					type: line.trim().includes(" ") ? line.split(" ")[0] : line.trim(),
-					param: line.trim().includes(" ") ? line.split(" ")[1] : "",
+					param: line.trim().includes(" ") ? line.split(" ").slice(1).join(" ") : "",
 					records: []
 				};
 			} else {
