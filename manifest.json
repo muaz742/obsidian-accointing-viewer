@@ -4,7 +4,7 @@
 	"version": "0.3.0",
 	"minAppVersion": "0.15.0",
 	"description": "Automatically generate accounting tables from Markdown code blocks tagged with accounting.",
-	"author": "muaz742",
+	"author": "Muaz Yediyüzkırkiki",
 	"authorUrl": "https://github.com/muaz742",
 	"fundingUrl": "https://www.patreon.com/muaz742",
 	"isDesktopOnly": false
