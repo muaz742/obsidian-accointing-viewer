@@ -2,6 +2,25 @@
 
 Obsidian Plugin that automatically generates accounting tables from Markdown code blocks tagged with the `accounting` alias.
 
+**Example Code Block:**
+
+````
+```accounting
+entry
+    + Cash: $10,100.50
+    - Common Stock: $10,100.50
+```
+````
+
+**Preview:**
+
+<img width="704" alt="prewiev-journal-entry-2" src="https://github.com/muaz742/obsidian-accointing-viewer/assets/39378729/3baefa86-07a2-4bd2-b910-15bce4932be7">
+
+
+**For more example:** 
+
+_Go to [Usage](README.md#usage) header._
+
 ## Installation
 
 **Install inside Plugins on Obsidian:**
@@ -30,54 +49,111 @@ Add content in a code block using the `accounting` alias.
 
 ### Transaction Record
 
+**Code Block:**
+
+````
 ```accounting
 transaction 2014-06-01
-	+ "Osborne Consulting, Inc., sold $10,000 of common stock to Cindy Osborne, who was investing cash in the business."
+    + "Osborne Consulting, Inc., sold $10,000 of common stock to Cindy Osborne, who was investing cash in the business."
 ```
-_Using without:_
+````
+
+**Preview:**
+
+<img width="704" alt="prewiev-transaction-1" src="https://github.com/muaz742/obsidian-accointing-viewer/assets/39378729/fd253537-0f50-4fba-8b9b-d3509747016c">
+
+**Code Block:**
+
+_Using without date:_
+````
 ```accounting
 transaction 
     + "Osborne Consulting, Inc., sold $10,000 of common stock to Cindy Osborne, who was investing cash in the business." 
 ```
+````
+
+**Preview:**
+
+<img width="704" alt="prewiev-transaction-2" src="https://github.com/muaz742/obsidian-accointing-viewer/assets/39378729/1680cffd-b423-451a-a56c-f21981a19c69">
+
 
 ### Journal Entry
 
+````
 ```accounting
 entry 2014-06-01
-	page "Page 1"
-	+ Cash: $10,100.50 : 111
-	- Common Stock: $10,100.50 : 311
-	desc "Sold stock."
+    page "Page 1"
+    + Cash: $10,100.50 : 111
+    - Common Stock: $10,100.50 : 311
+    desc "Sold stock."
 ```
+````
+
+**Preview:**
+
+<img width="704" alt="prewiev-journal-entry-1" src="https://github.com/muaz742/obsidian-accointing-viewer/assets/39378729/5af1388a-d26c-41ee-a47a-090ae2b1f990">
+
+**Code Block:**
+
 _Using only account and amount: without date and post reference:_
+````
 ```accounting
 entry
-	+ Cash: $10,100.50
-	- Common Stock: $10,100.50
+    + Cash: $10,100.50
+    - Common Stock: $10,100.50
 ```
+````
+
+**Preview:**
+
+<img width="704" alt="prewiev-journal-entry-2" src="https://github.com/muaz742/obsidian-accointing-viewer/assets/39378729/3baefa86-07a2-4bd2-b910-15bce4932be7">
+
 
 ### T-Account
 
+**Code Block:**
+
+````
 ```accounting
 t-account Account Receivable
-	+ Beginnig Balance: $24,000
-	+ Credit Sales: $400,000
-	- Collection: $85,000
-	- Bad Debd Expense: $315,000
-	balance
-	+ Ending Jan: $24,000
+    + Beginnig Balance: $24,000
+    + Credit Sales: $400,000
+    - Collection: $85,000
+    - Bad Debd Expense: $315,000
+    balance
+    + Ending Jan: $24,000
 ```
-_Using only account without balance:_
+````
+
+**Preview:**
+
+<img width="704" alt="prewiev-t-account-1" src="https://github.com/muaz742/obsidian-accointing-viewer/assets/39378729/ac783dbf-f1fc-419c-9c49-6951d7653ced">
+
+**Code Block:**
+
+_Using only account without balance_
+
+````
 ```accounting
 t-account Account Receivable
-	+ Beginnig Balance: $24,000
-	+ Credit Sales: $400,000
-	- Collection: $85,000
-	- Bad Debd Expense: $315,000
+    + Beginnig Balance: $24,000
+    + Credit Sales: $400,000
+    - Collection: $85,000
+    - Bad Debd Expense: $315,000
 ```
+````
+
+**Preview:**
+
+<img width="704" alt="prewiev-t-account-2" src="https://github.com/muaz742/obsidian-accointing-viewer/assets/39378729/c3e8fd1c-3be1-4b7d-b80c-114880317435">
 
 ### Combine
-Using multiple records in one block:
+
+**Code Block:**
+
+_Using multiple records in one block:_
+
+````
 ```accounting  
 transaction 2014-06-01  
     + "Osborne Consulting, Inc., sold $10,000 of common stock to Cindy Osborne, who was investing cash in the business." 
@@ -92,9 +168,9 @@ entry 2014-06-01
     desc "Sold stock."  
 
 entry
-	page "Page 1"
-	+ Cash: $10,100.50 : 111
-	- Common Stock: $10,100.50 : 311
+    page "Page 1"
+    + Cash: $10,100.50 : 111
+    - Common Stock: $10,100.50 : 311
 
 t-account Account Receivable  
     + Beginnig Balance: $24,000    
@@ -104,6 +180,12 @@ t-account Account Receivable
     balance    
     + Ending Jan: $24,000
 ```
+````
+
+**Preview:**
+
+<img width="704" alt="preview-combine" src="https://github.com/muaz742/obsidian-accointing-viewer/assets/39378729/8e354be8-b01b-482b-8d7b-7af63a87d6e9">
+
 
 ## Contributing
 
