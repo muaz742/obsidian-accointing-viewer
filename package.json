@@ -1,6 +1,6 @@
 {
 	"name": "account-viewer",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Automatically generate accounting tables from Markdown code blocks with accounting entries tagged with accounting.",
 	"main": "main.js",
 	"scripts": {
