@@ -99,7 +99,7 @@ entry
 t-account Account Receivable  
     + Beginnig Balance: $24,000    
     + Credit Sales: $400,000    
-    - Collection $85,000    
+    - Collection: $85,000    
     - Bad Debd Expense: $315,000    
     balance    
     + Ending Jan: $24,000
