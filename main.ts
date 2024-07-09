@@ -281,12 +281,12 @@ export default class AccountingViewerPlugin extends Plugin {
 	}
 
 	onunload() {
-		new SampleModal(this.app, "Accounting Viewer disabled!").open();
+		new ShowModal(this.app, "Accounting Viewer disabled!").open();
 		console.log("Bye, World!");
 	}
 }
 
-class SampleModal extends Modal {
+class ShowModal extends Modal {
 	constructor(app: App, public message: string) {
 		super(app);
 		this.message = message;
