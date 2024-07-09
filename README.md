@@ -23,6 +23,17 @@ _Go to [Usage](README.md#usage) header._
 
 ## Installation
 
+You can follow any of the 3 options below to install the plugin.
+
+### Option 1
+
+**If you have Obsidian installed on your device:**
+_⚠️ Important: This way is not ready, will be soon..._
+
+ - Follow the Obsidian URL to install the plugin: [obsidian://show-plugin?id=account-viewer](obsidian://show-plugin?id=account-viewer)
+
+### Option 2
+
 **Install inside Plugins on Obsidian:**
 _⚠️ Important: This way is not ready, will be soon..._
 1. **Open Settings.**
@@ -34,6 +45,8 @@ _⚠️ Important: This way is not ready, will be soon..._
 You can also browse available plugins in your browser, by heading to [obsidian.md/plugins](https://obsidian.md/plugins).
 
 For more details: [Browse community plugins | Obsidian Help](https://help.obsidian.md/Extending+Obsidian/Community+plugins#Browse+community+plugins)
+
+### Option 3
 
 **Manually Install:**
 1. Go to the [Release](https://github.com/muaz742/obsidian-accointing-viewer/releases) page.
