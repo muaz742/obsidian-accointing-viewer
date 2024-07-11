@@ -3,9 +3,7 @@ import {App, Modal, Plugin} from 'obsidian';
 export default class AccountingViewerPlugin extends Plugin {
 	async onload() {
 		this.registerMarkdownCodeBlockProcessor("accounting", (source, el, ctx) => {
-			console.log("Hello, World!");
 			const records = this.parseRecords(source);
-			console.log(JSON.stringify(records, null, 2));
 			this.renderViews(records, el)
 		});
 	}
@@ -281,25 +279,6 @@ export default class AccountingViewerPlugin extends Plugin {
 		});
 	}
 
-	onunload() {
-		new ShowModal(this.app, "Accounting Viewer disabled!").open();
-		console.log("Bye, World!");
-	}
+	onunload() { }
 }
 
-class ShowModal extends Modal {
-	constructor(app: App, public message: string) {
-		super(app);
-		this.message = message;
-	}
-
-	onOpen() {
-		const {contentEl} = this;
-		contentEl.setText(this.message);
-	}
-
-	onClose() {
-		const {contentEl} = this;
-		contentEl.empty();
-	}
-}
