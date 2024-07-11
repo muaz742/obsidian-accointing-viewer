@@ -200,6 +200,7 @@ export default class AccountingViewerPlugin extends Plugin {
 
 				/** Manipulate visibility based on conditions */
 				accountCell.toggleClass("description", entry.type === "desc");
+				accountCell.toggleClass("credit", entry.type === "CR");
 				entry.type === "desc" ? postRefCell.removeAttribute("hidden") : postRefCell.setAttr("hidden", "");
 				record.param === "" && dateCell.setAttr("hidden", "");
 				entry.post_ref !== undefined && postRefHeader.removeAttribute("hidden");
