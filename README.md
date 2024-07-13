@@ -1,6 +1,7 @@
 # Account Viewer
 
-Obsidian Plugin that automatically generates accounting tables from Markdown code blocks tagged with the `accounting` alias.
+Obsidian Plugin that automatically generates accounting tables from Markdown code blocks tagged with the `accounting`
+alias.
 
 **Example Code Block:**
 
@@ -17,7 +18,7 @@ entry
 <img width="704" alt="prewiev-journal-entry-2" src="https://github.com/muaz742/obsidian-accointing-viewer/assets/39378729/3baefa86-07a2-4bd2-b910-15bce4932be7">
 
 
-**For more example:** 
+**For more example:**
 
 _Go to [Usage](README.md#usage) header._
 
@@ -28,33 +29,38 @@ You can follow any of the 3 options below to install the plugin.
 ### Option 1
 
 **If you have Obsidian installed on your device:**
-_⚠️ Important: This way is not ready, will be soon..._
 
- - Follow the Obsidian URL to install the plugin: [obsidian://show-plugin?id=account-viewer](obsidian://show-plugin?id=account-viewer)
+- Follow the Obsidian URL to install the
+  plugin: [obsidian://show-plugin?id=account-viewer](obsidian://show-plugin?id=account-viewer)
 
 ### Option 2
 
 **Install inside Plugins on Obsidian:**
-_⚠️ Important: This way is not ready, will be soon..._
+
 1. **Open Settings.**
-2. **Select Turn on community plugins.** For more information, refer to [Plugin security > Restricted mode](https://help.obsidian.md/Extending+Obsidian/Plugin+security#Restricted%20mode).
+2. **Select Turn on community plugins.** For more information, refer
+   to [Plugin security > Restricted mode](https://help.obsidian.md/Extending+Obsidian/Plugin+security#Restricted%20mode).
 3. **Select Browse** to list all available community plugins.
 4. **Use the text box** to type **"Account Viewer"** keywords.
-5. **Enable "Account Viewer" plugin** from the list of Community plugins under **Settings → Community plugins → Installed plugins.**
+5. **Enable "Account Viewer" plugin** from the list of Community plugins under **Settings → Community plugins →
+   Installed plugins.**
 
 You can also browse available plugins in your browser, by heading to [obsidian.md/plugins](https://obsidian.md/plugins).
 
-For more details: [Browse community plugins | Obsidian Help](https://help.obsidian.md/Extending+Obsidian/Community+plugins#Browse+community+plugins)
+For more
+details: [Browse community plugins | Obsidian Help](https://help.obsidian.md/Extending+Obsidian/Community+plugins#Browse+community+plugins)
 
 ### Option 3
 
 **Manually Install:**
+
 1. Go to the [Release](https://github.com/muaz742/obsidian-accointing-viewer/releases) page.
-2. Download the latest version file: 
+2. Download the latest version file:
 	- _account-viewer-X.X.X.zip_
-3. Manually install the plugin. 
+3. Manually install the plugin.
 	* [How to Manually Install an Obsidian Plugin | @BrandonKBoswell | YouTube](https://www.youtube.com/watch?v=ffGfVBLDI_0)
-4. **Enable "Account Viewer" plugin** from the list of Community plugins under **Settings → Community plugins → Installed plugins.**
+4. **Enable "Account Viewer" plugin** from the list of Community plugins under
+5. **Settings → Community plugins → Installed plugins.**
 
 ## Usage
 
@@ -78,6 +84,7 @@ transaction 2014-06-01
 **Code Block:**
 
 _Using without date:_
+
 ````
 ```accounting
 transaction 
@@ -88,7 +95,6 @@ transaction
 **Preview:**
 
 <img width="704" alt="prewiev-transaction-2" src="https://github.com/muaz742/obsidian-accointing-viewer/assets/39378729/1680cffd-b423-451a-a56c-f21981a19c69">
-
 
 ### Journal Entry
 
@@ -109,6 +115,7 @@ entry 2014-06-01
 **Code Block:**
 
 _Using only account and amount: without date and post reference:_
+
 ````
 ```accounting
 entry
@@ -120,7 +127,6 @@ entry
 **Preview:**
 
 <img width="704" alt="prewiev-journal-entry-2" src="https://github.com/muaz742/obsidian-accointing-viewer/assets/39378729/3baefa86-07a2-4bd2-b910-15bce4932be7">
-
 
 ### T-Account
 
@@ -198,7 +204,6 @@ t-account Account Receivable
 **Preview:**
 
 <img width="704" alt="preview-combine" src="https://github.com/muaz742/obsidian-accointing-viewer/assets/39378729/8e354be8-b01b-482b-8d7b-7af63a87d6e9">
-
 
 ## Contributing
 
