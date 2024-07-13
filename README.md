@@ -28,14 +28,12 @@ You can follow any of the 3 options below to install the plugin.
 ### Option 1
 
 **If you have Obsidian installed on your device:**
-_⚠️ Important: This way is not ready, will be soon..._
 
  - Follow the Obsidian URL to install the plugin: [obsidian://show-plugin?id=account-viewer](obsidian://show-plugin?id=account-viewer)
 
 ### Option 2
 
 **Install inside Plugins on Obsidian:**
-_⚠️ Important: This way is not ready, will be soon..._
 1. **Open Settings.**
 2. **Select Turn on community plugins.** For more information, refer to [Plugin security > Restricted mode](https://help.obsidian.md/Extending+Obsidian/Plugin+security#Restricted%20mode).
 3. **Select Browse** to list all available community plugins.
