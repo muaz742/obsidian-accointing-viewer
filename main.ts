@@ -1,4 +1,4 @@
-import {App, Modal, Plugin} from 'obsidian';
+import {Plugin} from 'obsidian';
 
 export default class AccountingViewerPlugin extends Plugin {
 	async onload() {
@@ -147,63 +147,83 @@ export default class AccountingViewerPlugin extends Plugin {
 	}
 
 	renderJournalEntryTable(record: any, el: HTMLElement) {
+		/** Check if data exists */
+		const hasData = {
+			page: false,
+			date: false,
+			account: false,
+			post_ref: false,
+			debit: false,
+			credit: false
+		}
+		record.page !== undefined && (hasData.page = true);
+		record.param !== "" && (hasData.date = true);
+		record.records.forEach((entry: any) => {
+			if (entry.type === "DR") {
+				hasData.account = true;
+				hasData.post_ref = entry.post_ref !== undefined ? true : hasData.post_ref;
+				hasData.debit = true;
+			}
+			if (entry.type === "CR") {
+				hasData.account = true;
+				hasData.post_ref = entry.post_ref !== undefined ? true : hasData.post_ref;
+				hasData.credit = true;
+			}
+		});
+		record.records.forEach((entry: any) => {
+				if (entry.type === "desc") {
+					hasData.account = true;
+				}
+			}
+		);
+
 		/** Create Table */
-		el.createEl("table", {cls: "journal-entry"}, (table) => {
-			const tableHead = table.createEl("thead");
-			const tableBody = table.createEl("tbody");
+		const table = el.createEl("table", {cls: "journal-entry"});
+		const tableHead = table.createEl("thead");
+		const tableBody = table.createEl("tbody");
 
-			/** Create page reference row */
-			const headPageRow = tableHead.createEl("tr");
-			const pageHeader = headPageRow.createEl("th", {text: record.page, cls: "page-num"})
-			pageHeader.setAttr("colspan", "5");
-			record.page === undefined && headPageRow.setAttr("hidden", "")
+		/** Create page reference row */
+		const headPageRow = tableHead.createEl("tr");
+		const pageHeader = headPageRow.createEl("th", {text: record.page, cls: "page-num"})
+		pageHeader.setAttr("colspan", "5");
+		record.page === undefined && headPageRow.setAttr("hidden", "")
 
-			/** Create Table Header */
-			const headerRow = tableHead.createEl("tr");
-			const dateHeader = headerRow.createEl("th", {text: "DATE"});
-			const accountHeader = headerRow.createEl("th", {text: "ACCOUNTS", cls: "account-header"});
-			const postRefHeader = headerRow.createEl("th", {text: "POST REF.", cls: "post-ref"});
-			const drHeader = headerRow.createEl("th", {text: "DR."});
-			const crHeader = headerRow.createEl("th", {text: "CR."});
+		/** Create Table Header */
+		const headRow = tableHead.createEl("tr");
+		hasData.date && headRow.createEl("th", {text: "DATE", cls: "date"});
+		hasData.account && headRow.createEl("th", {text: "ACCOUNTS", cls: "account-header"});
+		hasData.post_ref && headRow.createEl("th", {text: "POST REF.", cls: "post-ref"});
+		hasData.debit && headRow.createEl("th", {text: "DR."});
+		hasData.credit && headRow.createEl("th", {text: "CR."});
 
-			/** Manipulate visibility based on conditions */
-			postRefHeader.setAttr("hidden", "");
-			record.param === "" && dateHeader.setAttr("hidden", "");
-			record.post_ref === undefined && postRefHeader.setAttr("hidden", "");
-
-			/** Create Table Body */
-			let onceShow = true;
-			record.records.forEach((entry: any) => {
-				/** Create Rows based on records */
-				const entryRow = table.createEl("tr");
-				const dateCell = entryRow.createEl("td", {cls: "date"})
-				onceShow ?
-					dateCell.setText(new Date(record.param).toLocaleDateString(
+		/** Create Table Body */
+		let onceShow = true;
+		record.records.forEach((entry: any) => {
+			const entryRow = tableBody.createEl("tr");
+			hasData.date && entryRow.createEl("td", {
+				cls: "date",
+				text: onceShow ?
+					new Date(record.param).toLocaleDateString(
 						'en-US', {year: 'numeric', month: 'short', day: 'numeric'}
-					)) :
-					dateCell.setText("")
-				onceShow = false;
-				const accountCell = entryRow.createEl(
-					"td", {text: entry.type === "desc" ? entry.description : entry.account}
-				);
-				const postRefCell = entryRow.createEl(
-					"td", {text: entry.post_ref}
-				);
-				const drCell = entryRow.createEl(
-					"td", {text: entry.type === "DR" ? entry.amount : ""}
-				);
-				const crCell = entryRow.createEl(
-					"td", {text: entry.type === "CR" ? entry.amount : ""}
-				);
-
-				/** Manipulate visibility based on conditions */
-				accountCell.toggleClass("description", entry.type === "desc");
-				accountCell.toggleClass("credit", entry.type === "CR");
-				entry.type === "desc" ? postRefCell.removeAttribute("hidden") : postRefCell.setAttr("hidden", "");
-				record.param === "" && dateCell.setAttr("hidden", "");
-				entry.post_ref !== undefined && postRefHeader.removeAttribute("hidden");
-				entry.post_ref !== undefined && postRefCell.removeAttribute("hidden");
-			});
+					) :
+					""
+			})
+			onceShow = false;
+			if (entry.type === "desc") {
+				hasData.account && entryRow.createEl("td", {text: entry.description, cls: "description"});
+				hasData.post_ref && entryRow.createEl("td", {text: ""});
+				hasData.debit && entryRow.createEl("td", {text: ""});
+				hasData.credit && entryRow.createEl("td", {text: ""});
+			} else {
+				hasData.account && entryRow.createEl("td", {text: entry.account});
+				hasData.post_ref && entryRow.createEl("td", {text: entry.post_ref});
+				hasData.debit && entry.type === "DR" ?
+					entryRow.createEl("td", {text: entry.amount}) :
+					entryRow.createEl("td", {text: ""});
+				hasData.credit && entry.type === "CR" ?
+					entryRow.createEl("td", {text: entry.amount}) :
+					entryRow.createEl("td", {text: ""});
+			}
 		});
 	}
 
@@ -279,6 +299,7 @@ export default class AccountingViewerPlugin extends Plugin {
 		});
 	}
 
-	onunload() { }
+	onunload() {
+	}
 }
 

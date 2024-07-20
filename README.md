@@ -31,7 +31,7 @@ You can follow any of the 3 options below to install the plugin.
 **If you have Obsidian installed on your device:**
 
 - Follow the Obsidian URL to install the
-  plugin: [obsidian://show-plugin?id=account-viewer](obsidian://show-plugin?id=account-viewer)
+  plugin: [https://obsidian.md/plugins?id=account-viewer](https://obsidian.md/plugins?id=account-viewer)
 
 ### Option 2
 
