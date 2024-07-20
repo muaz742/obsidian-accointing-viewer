@@ -1,4 +1,4 @@
-import {App, Modal, Plugin, Setting} from 'obsidian';
+import {Plugin} from 'obsidian';
 
 export default class AccountingViewerPlugin extends Plugin {
 	async onload() {
