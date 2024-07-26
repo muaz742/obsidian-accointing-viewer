@@ -215,7 +215,10 @@ export default class AccountingViewerPlugin extends Plugin {
 				hasData.debit && entryRow.createEl("td", {text: ""});
 				hasData.credit && entryRow.createEl("td", {text: ""});
 			} else {
-				hasData.account && entryRow.createEl("td", {text: entry.account});
+				hasData.account && entryRow.createEl("td", {
+					text: entry.account,
+					cls: entry.type === "DR" ? "debit" : "credit"
+				});
 				hasData.post_ref && entryRow.createEl("td", {text: entry.post_ref});
 				hasData.debit && entry.type === "DR" ?
 					entryRow.createEl("td", {text: entry.amount}) :
