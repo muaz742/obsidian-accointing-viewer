@@ -135,11 +135,7 @@ export default class AccountingViewerPlugin extends Plugin {
 			record.records.forEach((entry: any) => {
 				const entryRow = tableBody.createEl("tr");
 				entryRow.createEl("td", {
-					text: record.param !== "" ?
-						new Date(record.param).toLocaleDateString(
-							'en-US',
-							{year: 'numeric', month: 'short', day: 'numeric'}
-						) : ""
+					text: record.param !== "" ? this.formatDate(record.param) : ""
 				});
 				entryRow.createEl("td", {text: entry});
 			});
@@ -202,10 +198,7 @@ export default class AccountingViewerPlugin extends Plugin {
 			const entryRow = tableBody.createEl("tr");
 			hasData.date && entryRow.createEl("td", {
 				cls: "date",
-				text: onceShow ?
-					new Date(record.param).toLocaleDateString(
-						'en-US', {year: 'numeric', month: 'short', day: 'numeric'}
-					) :
+				text: onceShow ? this.formatDate(record.param) :
 					""
 			})
 			onceShow = false;
@@ -300,6 +293,14 @@ export default class AccountingViewerPlugin extends Plugin {
 				entryRow.createEl("td", {text: creditsBalance[i]?.amount});
 			}
 		});
+	}
+
+	formatDate(date: string) {
+		const [day, month, year] = date.split('-');
+		return new Date(`${year}-${month}-${day}`).toLocaleDateString(
+			'en-US',
+			{year: 'numeric', month: 'short', day: 'numeric'}
+		);
 	}
 
 	onunload() {
